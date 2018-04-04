@@ -11,92 +11,112 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginTop="8dp"
         android:text="Return"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
-
-    <Button
-        android:id="@+id/cal_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="計算"
-        app:layout_constraintTop_toBottomOf="@+id/shunyu"
-        tools:layout_editor_absoluteX="30dp" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:textSize="30sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="8dp"
-        android:text="支出"
-        tools:layout_editor_absoluteY="15dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <EditText
-        android:id="@+id/shishutu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="number"
-        android:text="0"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/dataBase"
+        app:layout_constraintVertical_bias="0.326"
         tools:layout_editor_absoluteX="36dp" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:textSize="30sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="収入"
-        app:layout_constraintTop_toBottomOf="@+id/shishutu"
-        tools:layout_editor_absoluteX="36dp" />
-
-    <EditText
-        android:id="@+id/shunyu"
-        android:layout_width="wrap_content"
-        android:layout_height="38dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:inputType="number"
-        android:text="0"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:layout_editor_absoluteX="36dp" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:textSize="30sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="残高"
-        app:layout_constraintTop_toBottomOf="@+id/cal_button"
-        tools:layout_editor_absoluteX="36dp" />
-
-    <EditText
-        android:id="@+id/zandaka"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:inputType="number"
-        android:text="0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/selectedDate"
         android:textSize="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="27dp"
         tools:layout_editor_absoluteY="1dp" />
+
+    <Button
+        android:id="@+id/dataBase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="12dp"
+        android:text="DBの中身を"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delete" />
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="wrap_content"
+        android:layout_height="47dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/selectedDate"
+        tools:layout_editor_absoluteX="50dp">
+
+        <requestFocus />
+    </EditText>
+
+
+    <EditText
+        android:id="@+id/editAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/return_button"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/editName"
+        tools:layout_editor_absoluteX="50dp" />
+
+
+    <Button
+        android:id="@+id/insert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editAge"
+        android:layout_marginTop="8dp"
+        android:text="登録"
+        app:layout_constraintTop_toBottomOf="@+id/editAge"
+        tools:layout_editor_absoluteX="37dp" />
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editAge"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@+id/insert"
+        android:text="更新"
+        app:layout_constraintHorizontal_bias="0.597"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editAge" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/update"
+        android:layout_alignBottom="@+id/update"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@+id/update"
+        android:text="削除"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/insert" />
+
+    <Button
+        android:id="@+id/deleteAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/delete"
+        android:layout_alignBottom="@+id/delete"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="28dp"
+        android:layout_toRightOf="@+id/delete"
+        android:text="すべて削除"
+        app:layout_constraintStart_toEndOf="@+id/delete"
+        app:layout_constraintTop_toBottomOf="@+id/update" />
+
 
 </android.support.constraint.ConstraintLayout>
