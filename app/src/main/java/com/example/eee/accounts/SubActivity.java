@@ -35,6 +35,7 @@ public class SubActivity extends Activity {
         textView = (TextView) findViewById(R.id.selectedDate);
         textView.setText(String.valueOf(array[0])+ "年"+  String.valueOf(array[1])+"月"+ String.valueOf(array[2])+"日");
 
+        final String dDate = (String.valueOf(array[0]) + (array[1]) + (array[2]));
 
         MyOpenHelper helper = new MyOpenHelper(this);
         final SQLiteDatabase db = helper.getWritableDatabase();
@@ -52,6 +53,8 @@ public class SubActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent dbIntent = new Intent(SubActivity.this,ShowDataBase.class);
+
+                dbIntent.putExtra("KEY2", dDate);
                 startActivity(dbIntent);
             }
         });
@@ -63,14 +66,22 @@ public class SubActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-
+                //String date = String.valueOf(Ddate);
                 String item = itemText.getText().toString();
                 String price = priceText.getText().toString();
+                String date = dDate;
 
                 ContentValues insertValues = new ContentValues();
+                //insertValues.put("date", date);
                 insertValues.put("item", item);
                 insertValues.put("price", price);
-                long id = db.insert("account", item, insertValues);
+                insertValues.put("date", date);
+
+                long id = db.insert("account2", null, insertValues);
+if(id == -1) {
+    Toast.makeText(SubActivity.this, "やべーーーー",
+            Toast.LENGTH_SHORT).show();
+}
             }
 
         });
@@ -90,7 +101,7 @@ public class SubActivity extends Activity {
                 } else {
                     ContentValues updateValues = new ContentValues();
                     updateValues.put("price", price);
-                    db.update("account", updateValues, "item=?", new String[] { item });
+                    db.update("account2", updateValues, "item=?", new String[] { item });
                 }
             }
         });
@@ -109,7 +120,7 @@ public class SubActivity extends Activity {
                     Toast.makeText(SubActivity.this, "商品名を入力してください。",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    db.delete("account", "item=?", new String[] { item });
+                    db.delete("account2", "item=?", new String[] { item });
                 }
             }
         });
@@ -123,7 +134,7 @@ public class SubActivity extends Activity {
             public void onClick(View v) {
                 String item = itemText.getText().toString();
                 String price = priceText.getText().toString();
-                db.delete("account", null, null);
+                db.delete("account2", null, null);
             }
 
         });
