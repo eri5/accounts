@@ -39,7 +39,7 @@ public class ShowDataBase extends Activity {
 
         // queryメソッドの実行例
 
-        Cursor c = db.query("person", new String[]{"name", "age"}, null,
+        Cursor c = db.query("account", new String[]{"item", "price"}, null,
 
                 null, null, null, null);
 
@@ -50,7 +50,7 @@ public class ShowDataBase extends Activity {
 
             TextView textView = new TextView(this);
 
-            textView.setText(String.format("%s : %d歳", c.getString(0),
+            textView.setText(String.format("%s : %d円", c.getString(0),
 
                     c.getInt(1)));
 

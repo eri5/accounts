@@ -36,39 +36,17 @@ public class SubActivity extends Activity {
         textView.setText(String.valueOf(array[0])+ "年"+  String.valueOf(array[1])+"月"+ String.valueOf(array[2])+"日");
 
 
-        /*Button btn = (Button)findViewById(R.id.cal_button);
-        btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-               // オブジェクトを取得
-                EditText shish = (EditText) findViewById(R.id.shishutu);
-                EditText shuny = (EditText) findViewById(R.id.shunyu);
-                EditText zanda = (EditText) findViewById(R.id.zandaka);
-                //入力された値を取得
-                Editable getText = shish.getText();
-                int int_shish = Integer.parseInt(getText.toString());
-                getText = shuny.getText();
-                int int_shuny = Integer.parseInt(getText.toString());
-                getText = zanda.getText();
-                int int_zanda = Integer.parseInt(getText.toString());
-                // 残高計算
-                int_zanda = int_zanda + int_shuny;
-                int_zanda = int_zanda - int_shish;
-                zanda.setText(Integer.toString(int_zanda));
-                shuny.setText(Integer.toString(int_shuny));
-                shish.setText(Integer.toString(int_shish));
-            }
-        });*/
-
         MyOpenHelper helper = new MyOpenHelper(this);
         final SQLiteDatabase db = helper.getWritableDatabase();
 
-        //add 4/4-s
-        final EditText nameText = (EditText) findViewById(R.id.editName);
-        final EditText ageText = (EditText) findViewById(R.id.editAge);
-        //add 4/4-e
+        //商品名テキスト
+        final EditText itemText = (EditText) findViewById(R.id.editItem);
+        //値段テキスト
+        final EditText priceText = (EditText) findViewById(R.id.editPrice);
 
+
+        //DB を見るボタン
         Button detaBaseButton = (Button) findViewById(R.id.dataBase);
-
         detaBaseButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -79,86 +57,82 @@ public class SubActivity extends Activity {
         });
 
 
-        //add 4/4-s
+        //登録ボタン
         Button entryButton = (Button) findViewById(R.id.insert);
         entryButton.setOnClickListener(new View.OnClickListener() {
 
-
             @Override
-
             public void onClick(View v) {
-                String name = nameText.getText().toString();
-                String age = ageText.getText().toString();
+
+                String item = itemText.getText().toString();
+                String price = priceText.getText().toString();
 
                 ContentValues insertValues = new ContentValues();
-                insertValues.put("name", name);
-                insertValues.put("age", age);
-                long id = db.insert("person", name, insertValues);
+                insertValues.put("item", item);
+                insertValues.put("price", price);
+                long id = db.insert("account", item, insertValues);
             }
 
         });
 
+        //更新ボタン
         Button updateButton = (Button) findViewById(R.id.update);
         updateButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-
             public void onClick(View v) {
-                String name = nameText.getText().toString();
-                String age = ageText.getText().toString();
+                String item = itemText.getText().toString();
+                String price = priceText.getText().toString();
 
-                if (name.equals("")) {
-                    Toast.makeText(SubActivity.this, "名前を入力してください。",
+                if (item.equals("")) {
+                    Toast.makeText(SubActivity.this, "商品名を入力してください。",
                             Toast.LENGTH_SHORT).show();
                 } else {
                     ContentValues updateValues = new ContentValues();
-                    updateValues.put("age", age);
-                    db.update("person", updateValues, "name=?", new String[] { name });
+                    updateValues.put("price", price);
+                    db.update("account", updateValues, "item=?", new String[] { item });
                 }
             }
         });
 
 
+        //削除ボタン
         Button deleteButton = (Button) findViewById(R.id.delete);
         deleteButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-
             public void onClick(View v) {
-                String name = nameText.getText().toString();
-                String age = ageText.getText().toString();
+                String item = itemText.getText().toString();
+                String price = priceText.getText().toString();
 
-                if (name.equals("")) {
-                    Toast.makeText(SubActivity.this, "名前を入力してください。",
+                if (item.equals("")) {
+                    Toast.makeText(SubActivity.this, "商品名を入力してください。",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    db.delete("person", "name=?", new String[] { name });
+                    db.delete("account", "item=?", new String[] { item });
                 }
             }
         });
 
 
+        //すべて削除ボタン
         Button deleteAllButton = (Button) findViewById(R.id.deleteAll);
         deleteAllButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-
             public void onClick(View v) {
-                String name = nameText.getText().toString();
-                String age = ageText.getText().toString();
-                db.delete("person", null, null);
+                String item = itemText.getText().toString();
+                String price = priceText.getText().toString();
+                db.delete("account", null, null);
             }
 
         });
 
 
-
-
-
-        //add 4/4-e
-
+        //RETURNボタン
         Button returnButton = findViewById(R.id.return_button);
         returnButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 finish();

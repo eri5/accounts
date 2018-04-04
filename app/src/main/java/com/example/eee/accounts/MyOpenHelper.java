@@ -13,7 +13,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
 
     public MyOpenHelper(Context context) {
 
-        super(context, "NameAgeDB", null, 1);
+        super(context, "AccountDB", null, 1);
 
     }
 
@@ -23,7 +23,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
 
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("create table person(" + " name text not null," + "age text"
+        db.execSQL("create table account(" + "item text not null, " + "price text"
 
                 + ");");
 
